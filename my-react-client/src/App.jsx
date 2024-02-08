@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from "react";
+import { Routes, Route,  NavLink, useNavigate } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import Cars from "./components/Cars";
+import Newarrivals from "./components/NewArrivals";
+import Contact from "./components/Contact";
+import Error404 from "./components/Error404";
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+    <nav>
+    <button>
+      <NavLink to="/">Home</NavLink>
+      </button>
+
+      <button>
+      <NavLink to="/cars">Cars</NavLink>
+      </button>
+
+      <button>
+      <NavLink to="/newarrivals">New Arrivals</NavLink>
+      </button>
+
+      <button>
+      <NavLink to="/contact">Contact us</NavLink>
+      </button>
+
+  </nav> 
+
+  <Routes>
+    <Route path="/" element={<HomePage /> } />
+    <Route path="/cars" element={<Cars /> } />
+    <Route path="/newarrivals" element={<Newarrivals /> } />
+    <Route path="/contact" element={<Contact/> } />
+    <Route path="/*" element={<Error404 /> } />
+  </Routes>
+</div>
   )
-}
+  }
 
 export default App
